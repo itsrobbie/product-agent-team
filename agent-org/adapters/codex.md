@@ -1,6 +1,6 @@
 # Codex adapter
 
-Use this adapter when the target repository uses Codex. The official references are [Codex subagents](https://developers.openai.com/codex/concepts/subagents), [Codex custom agents](https://developers.openai.com/codex/agent-configuration/subagents), and [Codex project instructions](https://developers.openai.com/codex/guides/agents-md). If a linked page moves, use the current Codex documentation for the same topic.
+Use this adapter when the target repository uses Codex. The official references are [Codex subagents](https://developers.openai.com/codex/concepts/subagents), [Codex custom agents](https://developers.openai.com/codex/agent-configuration/subagents), [Codex configuration reference](https://developers.openai.com/codex/config-reference/), and [Codex project instructions](https://developers.openai.com/codex/guides/agents-md). If a linked page moves, use the current Codex documentation for the same topic.
 
 ## Native files and generation
 

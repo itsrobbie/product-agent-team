@@ -1,6 +1,6 @@
 # Kiro adapter
 
-Use this adapter when the target repository uses Kiro. The official references are [Kiro custom-agent configuration](https://kiro.dev/docs/custom-agents/configuration-reference/), [Kiro sub-agents](https://kiro.dev/docs/custom-agents/subagents/), and [Kiro CLI V3 agent configuration](https://kiro.dev/docs/cli/v3/agent-config/).
+Use this adapter when the target repository uses Kiro. The official references are [Kiro custom-agent configuration](https://kiro.dev/docs/custom-agents/configuration-reference/), [Kiro CLI 2.x reference](https://kiro.dev/docs/cli/2x-reference/), [Kiro sub-agents](https://kiro.dev/docs/custom-agents/subagents/), and [Kiro CLI V3 agent configuration](https://kiro.dev/docs/cli/v3/agent-config/).
 
 ## Native files and version selection
 
@@ -15,7 +15,7 @@ Paths in the examples are relative to `.kiro/agents/`. The `file://../../agent-o
 
 ## CLI 2.x JSON format
 
-Use the legacy fields documented for CLI 2.x. The `prompt` points at the member charter. `resources` includes the operating contract. `toolsSettings.subagent.availableAgents` and `trustedAgents` name only `worker`, so the top-level member may start a Worker but a Worker cannot start another agent. Thinking members list read and planning tools only. Worker gets the edit, shell, and test tools required by its brief.
+Use the legacy fields documented for CLI 2.x. The confirmed fields used here are `name`, `description`, `prompt`, `model`, `tools`, `resources`, and `toolsSettings`. The `prompt` points at the member charter. `resources` includes the operating contract. `toolsSettings.subagent.availableAgents` and `trustedAgents` name only `worker`, so the top-level member may start a Worker but a Worker cannot start another agent. Thinking members list read and planning tools only. Worker gets the edit, shell, and test tools required by its brief. Do not substitute `allowedTools` for `tools`; it is not used by this adapter.
 
 ### Complete thinking-member example
 
@@ -119,6 +119,7 @@ Direct mode is selected by the router phrases in `agent-org/ROUTER.md`. Kiro's n
 ## Known limits
 
 - CLI 2.x and V3 do not share one file format. Emit JSON for 2.x and Markdown for V3.
+- The CLI 2.x reference documents `tools` and `toolsSettings` for agent profiles. The installed 2.37 validator accepted the adapter's `tools`/`toolsSettings` shape and rejected a scratch profile using only `allowedTools`; do not generate `allowedTools`.
 - CLI V3 ignores `toolsSettings` and legacy `allowedTools` until migration. Do not put those fields in V3 Markdown.
 - Kiro validates whether the pinned model is available when a session starts. An unavailable pin can make the first prompt fail. The installer must ask the local model list rather than guess.
 - V3 permissions are capability rules, while `tools` selectors control visibility. They are not interchangeable.
