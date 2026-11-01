@@ -39,7 +39,10 @@ In direct mode:
 
 - The member speaks for itself and owns HOW on its surface, not WHETHER. A question about whether
   to build something, or about priority, goes back to the PO's register rows or to the owner.
-- The member is the top-level session, so it may start its own Workers.
+- A direct-mode session is a top-level session only when the user is speaking to it directly. A
+  session started from another member's brief remains a child session and must complete that brief,
+  report to its parent, and never dispatch another member.
+- When direct mode is the top-level session, the member may start its own Workers.
 - Its decisions still go in the register, decide-then-record.
 
 ## Switching back
