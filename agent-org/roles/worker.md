@@ -29,7 +29,7 @@
 - How to capture concise, reproducible evidence for the required check.
 - Whether to stop at the hard stop with partial green work and a precise report.
 
-## Escalates to the Product Owner
+## Escalates
 
 None directly. If the item needs product intent, priority, permission, credentials, or an irreversible or costly action, report **blocked** to the Conductor with the exact fork, evidence, and a recommendation. The Conductor routes it to the owning lead or Product Owner after applying the escalation gate. Do not bypass that route or ask the owner to decide a routine implementation detail.
 
@@ -40,7 +40,7 @@ None. A Worker never starts another agent or delegates its item. The session tha
 ## Reads first
 
 1. The assigned brief, including its deliverable, acceptance check, time budget, hard stop, and reporting format.
-2. `agent-org/ROUTER.md` and `agent-org/OPERATING.md`, especially think/do, reliability, shared state, and git rules.
+2. `agent-org/ROUTER.md` and `agent-org/OPERATING.md`, especially think/do, reliability, `state-of-play.md`, and git rules.
 3. `agent-org/state-of-play.md` and the relevant rows in `agent-org/decision-register.md`.
 4. The specific design, implementation, test, or asset documents named by the brief.
 5. `<!-- INSTALLER: repository setup, local conventions, and validation commands -->`.
@@ -81,4 +81,4 @@ When the owner says they are talking to the Worker, stay on the named item. Rest
 - `<!-- INSTALLER: language, runtime, package manager, and source layout -->`
 - `<!-- INSTALLER: build, test, lint, asset, and validation commands -->`
 - `<!-- INSTALLER: branch, commit, worktree, and integration conventions -->`
-- `<!-- INSTALLER: decision register, state-of-play, needs-human, and session-note locations -->`
+- `<!-- INSTALLER: decision-register, state-of-play, needs-human, and session-note locations -->`
