@@ -14,3 +14,6 @@ DECIDED silently; supersede rows rather than deleting them.
 | D6 | Think on the top model, do on a cheap model: only Workers edit files or run builds and tests. | DECIDED | 2026-11-02 |
 | D7 | One level of spawning: only the top-level session starts agents. | DECIDED | 2026-11-02 |
 | D8 | Licence: MIT, so the files can be copied into any repo. | SUGGESTED | 2026-11-02 |
+| D9 | Kiro adapter writes JSON agent files on Kiro CLI 2.x and Markdown on V3 (2.x does not load Markdown agent files). | DECIDED | 2026-11-02 |
+| D10 | Verification drives Codex and OpenCode through the CLIs bundled in their desktop apps, using the owner's existing sign-in; no separate CLI installs. | DECIDED | 2026-11-02 |
+| D11 | Design documents that are themselves the thinking (charters, ADRs, specs, kit docs) are written by the owning member; Workers do mechanical work only. | DECIDED | 2026-11-02 |
