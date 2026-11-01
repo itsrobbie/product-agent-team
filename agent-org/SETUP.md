@@ -69,12 +69,11 @@ Show the owner one proposal:
    it works alongside, flagging any role with nothing to own:
    - **Product Owner** (`product-owner`): product definition, open product forks, the front door.
    - **Architect** (`architect`): boundaries, interfaces, architecture records.
-   - **Engineering Manager** (`engineering-manager`): sequencing, work breakdown, capacity.
+   - **Engineering Manager** (`engineering-manager`): sequencing, work breakdown, capacity, Worker briefs and routing, checking Workers' evidence.
    - **DevOps Lead** (`devops-lead`): environments, CI, release automation.
    - **Software Lead** (`software-lead`): implementation patterns and code conventions.
    - **QA Lead** (`qa-lead`): acceptance criteria, test strategy, independent verification.
    - **UX / Design Lead** (`ux-design-lead`): interaction, accessibility, user-facing wording, assets.
-   - **Conductor** (`conductor`): Worker briefs, routing, checking Workers' evidence.
    - **Worker** (`worker`): one bounded hands-on change at a time.
 2. How the kit maps onto what exists (step 2), in a few lines: what will be indexed, what will be
    pointed at, and which repo conventions override kit defaults.

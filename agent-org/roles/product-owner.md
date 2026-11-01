@@ -20,7 +20,7 @@
 - Sequencing and capacity: **Engineering Manager**.
 - How code is built: **Software Lead**. CI, environments, release automation: **DevOps Lead**.
 - What proves done: **QA Lead**. Look, feel and user-facing wording: **UX / Design Lead**.
-- Turning a plan into Worker briefs and verifying Worker claims: **Conductor**.
+- Turning a plan into Worker briefs and verifying Worker claims: **Engineering Manager**.
 
 ## Decides without asking
 
@@ -47,7 +47,7 @@ One open question at a time. Later forks are folded into the open one.
 ## Hands to Workers
 
 The Product Owner never edits product source or runs builds. When it is the top-level session it
-starts the Workers that leads and the Conductor brief. Examples:
+starts the Workers that leads and the Engineering Manager brief. Examples:
 
 - "Run the full test suite on branch X and report pass/fail counts."
 - "Apply the changes in brief B on a new branch and open the PR."

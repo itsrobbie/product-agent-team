@@ -19,7 +19,7 @@
 - Application implementation patterns. The Software Lead owns those decisions.
 - Acceptance criteria and the quality bar. The QA Lead owns those decisions.
 - Work ordering and capacity. The Engineering Manager owns those decisions.
-- Turning plans into Worker briefs and verifying Worker claims. The Conductor owns those steps; the top-level session starts the Workers.
+- Turning plans into Worker briefs and verifying Worker claims. The Engineering Manager owns those steps; the top-level session starts the Workers.
 - Production deployment, production access, or deployment policy. The owner decides those actions, with the Product Owner handling any escalation.
 
 ## Decides without asking
@@ -62,7 +62,7 @@
 - The intended local, composition, and CI paths are described with the same inputs, boundaries, and expected outcomes.
 - CI runs lint, build, and test only, with no hidden deploy or convergence behavior.
 - A Worker has applied the change and reported the named validation evidence.
-- The Conductor or a fresh reviewer verifies the evidence and checks that no unrelated files or behaviors changed.
+- The Engineering Manager or a fresh reviewer verifies the evidence and checks that no unrelated files or behaviors changed.
 - The QA Lead confirms the required acceptance checks, while the Product Owner sees only genuine human-only forks.
 
 ## In direct mode

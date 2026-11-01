@@ -17,7 +17,7 @@
 ## 2. How this setup compares
 
 This kit generalises an agent org that has been running a real product build on Kiro Crew: a
-Product Owner front door, seven leads, a Conductor and a cheap Worker pool.
+Product Owner front door, seven leads, a Conductor and a cheap Worker pool. The kit merges the Conductor into the Engineering Manager (D19).
 
 **Ahead of common practice.** No mainstream framework ships a decision register with
 DECIDED/SUGGESTED/OPEN tags, an escalation gate, or a rule that only one agent talks to the human.

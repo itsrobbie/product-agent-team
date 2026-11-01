@@ -10,7 +10,7 @@ DECIDED silently; supersede rows rather than deleting them.
 | D2 | Target tools: Codex, Kiro and OpenCode. Other AGENTS.md tools are covered by a generic adapter. | SUPERSEDED by D17 | 2026-11-02 |
 | D3 | Markdown is the source of truth; the installer also generates each tool's native agent files (Codex TOML, Kiro and OpenCode markdown). | SUPERSEDED by D17 | 2026-11-02 |
 | D4 | Member memory is session-scoped and gitignored; a short end-of-session summary goes to the register and `state-of-play.md`. | DECIDED | 2026-11-02 |
-| D5 | Default roster: Product Owner, Architect, Engineering Manager, DevOps Lead, Software Lead, QA Lead, UX/Design Lead, Conductor, Worker. | DECIDED | 2026-11-02 |
+| D5 | Default roster: Product Owner, Architect, Engineering Manager, DevOps Lead, Software Lead, QA Lead, UX/Design Lead, Conductor, Worker. | SUPERSEDED by D19 | 2026-11-02 |
 | D6 | Think on the top model, do on a cheap model: only Workers edit files or run builds and tests. | DECIDED | 2026-11-02 |
 | D7 | One level of spawning: only the top-level session starts agents. | DECIDED | 2026-11-02 |
 | D8 | Licence: MIT, so the files can be copied into any repo. | SUGGESTED | 2026-11-02 |
@@ -24,3 +24,4 @@ DECIDED silently; supersede rows rather than deleting them.
 | D16 | A roster approval given in the message that starts the setup counts as the approval; the setup does not ask again. | DECIDED | 2026-11-02 |
 | D17 | The kit is docs only: no scripts, tool adapters, generated tool files or verification harness. The environment it is hydrated into handles all tooling, guided by principles in `SETUP.md` section 5 (owner direction). Supersedes D2, D3, D9, D10, D12, D13, D14. | DECIDED | 2026-11-02 |
 | D18 | Existing repositories are the main case. The setup only adds files, indexes existing decision records in the register instead of copying them, seeds state-of-play from work in flight, lets repo conventions and existing agent instructions win, and leaves work in progress untouched (owner direction). | DECIDED | 2026-11-02 |
+| D19 | Default roster is eight members: Product Owner, Architect, Engineering Manager, DevOps Lead, Software Lead, QA Lead, UX/Design Lead, Worker. The Conductor is dropped: its routing, tracking and Worker-claim checking merge into the Engineering Manager, because without a background runtime the two roles duplicated each other (owner direction). Supersedes D5. | DECIDED | 2026-11-02 |
