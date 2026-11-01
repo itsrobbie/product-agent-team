@@ -1,0 +1,103 @@
+# Definition: what the kit is
+
+**Status: APPROVED.** This is the WHAT. The build plan comes next.
+
+## One sentence
+
+A folder of markdown files you drop into any repo. You point that repo's agent (Codex, Kiro or
+OpenCode) at `SETUP.md`, it installs a tiered product agent team tailored to the repo, and from
+then on you talk to the Product Owner, who decides, delegates and buffers. Or you say "I'm talking
+to the X" to work directly with one member.
+
+## What it contains
+
+```
+agent-org/                     # the drop-in folder
+  SETUP.md                     # the installer: an agent reads this and rolls the team out
+  OPERATING.md                 # the contracts every member follows (tool-neutral)
+  ROUTER.md                    # who am I talking to: Product Owner vs "I'm talking to the X"
+  roles/                       # one charter template per roster role
+  templates/                   # decision-register, needs-human, state-of-play, lessons, brief
+  adapters/                    # how to map onto each tool's native agent feature
+    codex.md  kiro.md  opencode.md  generic.md
+```
+
+After install, the target repo has:
+
+```
+AGENTS.md                      # gets a short block: "read agent-org/ROUTER.md first"
+agent-org/members/<id>.md      # charter per member, tailored to this repo (committed)
+agent-org/decision-register.md # committed
+agent-org/needs-human.md       # committed
+agent-org/state-of-play.md     # committed handoff file; every session starts by reading it
+agent-org/lessons.md           # committed durable corrections
+.agent-org-session/            # GITIGNORED: per-member scratch notes for the current session
++ native agent files generated for whichever of the three tools are in use
+```
+
+## What it does
+
+1. **The Product Owner is the front door.** Every new chat is the Product Owner. It decides from
+   the register and docs, delegates, verifies, and brings you only human-only forks with a
+   recommendation. Rules: decide-then-record, the escalation gate, one pending question at a time,
+   definition before plan before execution, decision briefs rather than inventories.
+2. **Direct mode.** "I'm talking to the Architect", "@architect" or "switch to QA" makes the chat
+   load that member's charter, the register and state-of-play, and answer as that member until
+   "back to the Product Owner". The member owns HOW, not WHETHER, and its decisions still go in the
+   register. Works through the `AGENTS.md` router in all three tools; OpenCode's Tab/@ switching and
+   Kiro's agent swap are optional shortcuts.
+3. **Think on the top model, do on a cheap model.** Every member except Worker uses the top model
+   only to read, plan, decide, brief, review and verify. Hands-on work (code edits, tests, builds,
+   CI runs, assets, screenshots, bulk file changes) goes to a Worker on a cheap model. A brief may
+   raise one Worker to a mid-tier model only when it says why.
+4. **Session memory, not committed memory.** Members keep working notes in the gitignored
+   `.agent-org-session/` folder. At the end of a session, or on leaving direct mode, the member
+   writes a short summary: decisions to the register, open threads as a few lines under its heading
+   in `state-of-play.md`.
+5. **One level of spawning on every tool.** Codex blocks grandchildren by default, so only the
+   top-level session starts agents. Normally that is the Product Owner: a lead returns a plan plus
+   ready-to-run Worker briefs, and the Product Owner starts those Workers. In direct mode the member
+   you are talking to is the top-level session and starts its own Workers. Without any subagent
+   feature, Workers run one after another with a context reset between them.
+6. **Reliability rules in every brief:** one deliverable, a time budget with a hard stop, commit
+   after every green step, never end a turn with live children, resume from commits plus
+   state-of-play.
+7. **Tailored install.** The installer reads the repo, detects which tools are present, and writes
+   the full roster with tailored charters. Where a role has nothing to own, it says so and you
+   decide whether to keep it.
+
+## Default roster
+
+| Member | Owns | Decides without asking | Escalates | Model |
+|---|---|---|---|---|
+| **Product Owner** (front door) | WHAT the product is; open product forks; talking to you | anything in the register or docs; members' engineering questions | product intent not in the docs, priority calls, permissions, irreversible or costly actions | top (thinking) |
+| **Architect** | how the design holds together; ADRs | anything in an ADR; layer placement | a change that alters an ADR | top (thinking) |
+| **Engineering Manager** | sequencing, capacity, task breakdown | ordering and assignment | cross-tier priority conflicts | top (thinking) |
+| **DevOps Lead** | CI, environments, build and release automation | CI shape inside the decided scope | anything touching production | top (thinking) |
+| **Software Lead** | how the code is built; implementation patterns | patterns within the ADRs | a pattern that implies a product decision | top (thinking) |
+| **QA Lead** | what proves done; acceptance criteria; independent verification | test plans; definition of done | lowering a stated bar | top (thinking) |
+| **UX / Design Lead** | look and feel; interaction design; accessibility; user-facing vocabulary; asset pipeline | design within decided direction | a direction that implies a new product decision | top (thinking) |
+| **Conductor** | turning a goal into Worker briefs; routing; verifying claims | all routing and verification | nothing; it routes escalations | top (thinking) |
+| **Worker** | one bounded item each | mechanical work inside the brief | anything ambiguous, reported as blocked | cheap (doing) |
+
+A Security reviewer is an optional role pack, added once the product has real surface area.
+
+## What it is not
+
+- Not a runtime, CLI or daemon. Nothing runs when no chat is open: no background patrols, crons or
+  notifications. The Product Owner surfaces `needs-human.md` at the start of each chat.
+- Not tied to any one tool or runtime.
+- Not a parallel-writer swarm. One integrator owns merges.
+- No persistent per-member memory in the repo.
+- No dedicated Claude Code, Copilot or Cursor adapters in v1. `generic.md` covers any tool that
+  reads `AGENTS.md`.
+
+## Done means
+
+- A fresh agent installs it from `SETUP.md`, with no hand edits, on each of Codex, Kiro and
+  OpenCode (two unrelated repos between them, at least one with two tools side by side).
+- On each tool: the Product Owner delegates a real task to at least two members and returns one
+  consolidated summary; "I'm talking to QA" switches context and back; a decision made in direct
+  mode lands in the register and is not re-asked; `.agent-org-session/` never shows in
+  `git status`; every file edit and build or test run was done by a cheap Worker.
+- A same-task comparison against a single agent (time, tokens, defects found) is recorded here.
