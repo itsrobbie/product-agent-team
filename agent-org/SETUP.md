@@ -98,7 +98,11 @@ Run the following checks and report each result with the paths and counts. A fai
 5. **Gitignore:** `.agent-org-session/` occurs as an entry in `.gitignore`, and `git status --short` does not show a session directory.
 6. **Native coverage:** for every detected native tool, every approved member has exactly one native file in the correct directory and the file points to the member charter and operating contract.
 7. **Native format:** parse each TOML, JSON, or YAML frontmatter file with a read-only local validator or the tool's documented validation command. Check descriptions, model pins, permissions, and Worker routing. Do not start an agent prompt.
-8. **Hygiene:** run the identity-hygiene grep required by the project instructions from the repository root against `agent-org`, `docs`, and `README.md`. It must print nothing. Keep the grep pattern out of committed files. Also reject absolute local paths, credentials, hosts, IPs, handles, and machine identifiers in the changed files.
+8. **Hygiene:** build a grep pattern at install time from values that identify the owner and
+   machine (the git `user.name` and `user.email`, the hosting-account handle, the hostname, the
+   home directory path) and run it against every file this install adds or changes. It must print
+   nothing. Never write the pattern itself into a committed file, since it contains those values.
+   Also reject credentials and IP addresses in the changed files.
 9. **Diff scope:** inspect `git diff --check` and `git diff --stat`. Only installer, kit, router, ignore, and approved native files may be changed.
 
 ## 8. Commit and open a PR in the target repository
