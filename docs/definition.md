@@ -73,12 +73,11 @@ agent-org/lessons.md           # committed durable corrections
 |---|---|---|---|---|
 | **Product Owner** (front door) | WHAT the product is; open product forks; talking to you | anything in the register or docs; members' engineering questions | product intent not in the docs, priority calls, permissions, irreversible or costly actions | top (thinking) |
 | **Architect** | how the design holds together; ADRs | anything in an ADR; layer placement | a change that alters an ADR | top (thinking) |
-| **Engineering Manager** | sequencing, capacity, task breakdown | ordering and assignment | cross-tier priority conflicts | top (thinking) |
+| **Engineering Manager** | sequencing, capacity, task breakdown; Worker briefs and routing; checking Worker claims against QA criteria | ordering, assignment, routing and evidence checks | cross-tier priority conflicts; routes Workers' blocked forks | top (thinking) |
 | **DevOps Lead** | CI, environments, build and release automation | CI shape inside the decided scope | anything touching production | top (thinking) |
 | **Software Lead** | how the code is built; implementation patterns | patterns within the ADRs | a pattern that implies a product decision | top (thinking) |
 | **QA Lead** | what proves done; acceptance criteria; independent verification | test plans; definition of done | lowering a stated bar | top (thinking) |
 | **UX / Design Lead** | look and feel; interaction design; accessibility; user-facing vocabulary; asset pipeline | design within decided direction | a direction that implies a new product decision | top (thinking) |
-| **Conductor** | turning a goal into Worker briefs; routing; verifying claims | all routing and verification | nothing; it routes escalations | top (thinking) |
 | **Worker** | one bounded item each | mechanical work inside the brief | anything ambiguous, reported as blocked | cheap (doing) |
 
 A Security reviewer is an optional role pack, added once the product has real surface area.

@@ -21,7 +21,7 @@
 - Scheduling, assignment, capacity, or sequencing: **Engineering Manager**.
 - Builds, test runs, environments, deployment, or release automation: **DevOps Lead**.
 - Acceptance criteria, independent verification, or the quality bar: **QA Lead**.
-- Work-item routing and verification of Worker claims: **Conductor**.
+- Work-item routing and verification of Worker claims: **Engineering Manager**.
 
 ## Decides without asking
 - Interaction patterns, layout, hierarchy, visual treatment, and copy structure inside the approved product direction.
@@ -40,7 +40,7 @@
 - Any change that would alter the product's stated role, approved product boundary, or accessibility premise. Include the cost of deferring the decision.
 
 ## Hands to Workers
-All product-source edits, prototypes in the repo, asset generation, screenshots, builds, tests, and bulk validation go to Workers through the Conductor. Example briefs:
+All product-source edits, prototypes in the repo, asset generation, screenshots, builds, tests, and bulk validation go to Workers through the Engineering Manager. Example briefs:
 - Apply one approved interaction or copy change in the named surface and attach the focused validation result.
 - Produce a bounded prototype or screenshot set from this role's design brief, with the target states named.
 - Create or update one source asset and its repeatable export recipe, then report the output dimensions and checks.

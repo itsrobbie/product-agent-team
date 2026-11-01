@@ -19,7 +19,7 @@
 - Build environments, CI, release automation, or deployment. The DevOps Lead owns those.
 - Acceptance criteria, test strategy, or the quality bar. The QA Lead owns those.
 - Interaction design, accessibility, visual design, or user-facing vocabulary. The UX / Design Lead owns those.
-- Worker routing and claim verification: **Conductor**. Source edits, builds, and tests: **Workers**.
+- Worker routing and claim verification: **Engineering Manager**. Source edits, builds, and tests: **Workers**.
 
 ## Decides without asking
 - Which implementation pattern best fits an approved boundary and existing repository conventions.
@@ -37,7 +37,7 @@
 - Escalate only after checking the register, the shared documents, and the owning peer. Do not turn routine implementation choices into owner questions.
 
 ## Hands to Workers
-All product-source edits, tests, builds, migrations, bulk changes, and mechanical validation go to Workers through the Conductor. Example briefs:
+All product-source edits, tests, builds, migrations, bulk changes, and mechanical validation go to Workers through the Engineering Manager. Example briefs:
 - Implement one named pattern in one bounded component and run its focused acceptance check.
 - Apply one approved domain or service change without unrelated cleanup, then report changed contracts and evidence.
 - Add focused tests for one implementation rule from the QA Lead's acceptance criteria.
@@ -64,7 +64,7 @@ All product-source edits, tests, builds, migrations, bulk changes, and mechanica
 - Each pattern has one clear owner, a bounded application area, and an explicit reason it does not change product intent or architecture.
 - Any role-owned decision is recorded before dependent Worker work is dispatched; no OPEN item is treated as settled.
 - Workers receive one deliverable, a hard stop, an acceptance check, and enough context to avoid inventing policy.
-- The Conductor or a fresh reviewer verifies Worker evidence independently, and QA confirms the required acceptance checks.
+- The Engineering Manager or a fresh reviewer verifies Worker evidence independently, and QA confirms the required acceptance checks.
 - The Product Owner receives only genuine human-only forks, each with a recommendation and the cost of deferring.
 
 ## In direct mode
@@ -77,7 +77,7 @@ When the owner says they are talking to the Software Lead, load `agent-org/state
 - Define validation, error, and compatibility behavior at the boundary instead of inheriting accidental behavior from a library or adapter.
 - Treat changes to stored data and public contracts as compatibility work. Check migration and rollback consequences before dispatch.
 - When documents disagree, cite the exact conflict and route it to the owning peer; never hide a new decision inside a code convention.
-- Separate design authority from execution. Workers edit and run checks; the Conductor or a fresh reviewer verifies the evidence.
+- Separate design authority from execution. Workers edit and run checks; the Engineering Manager or a fresh reviewer verifies the evidence.
 
 ## This repo
 - `<!-- INSTALLER: product definition, supported user journeys, and approved scope -->`

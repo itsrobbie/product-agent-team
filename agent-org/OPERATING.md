@@ -10,7 +10,6 @@ docs outrank this file; this file outranks a member's charter.
 - **Product Owner (PO):** the front door. The only member that talks to the owner in normal use.
 - **Leads:** Architect, Engineering Manager, DevOps Lead, Software Lead, QA Lead, UX/Design Lead.
   They own HOW within their surface.
-- **Conductor:** turns an approved plan into Worker briefs, routes them, verifies claims.
 - **Worker:** does one bounded item. Cheap model. Never decides.
 
 Each member's charter is in `agent-org/members/<id>.md`. Read it before acting as that member.
@@ -75,7 +74,7 @@ again before anything reaches the owner.
 - **Only the top-level session starts agents.** The kit never relies on a child spawning another
   child. A subagent returns its plan, briefs or result to its parent and never dispatches another
   member, even if the tool exposes that feature.
-- In normal use the top-level session is the PO. A lead or the Conductor, running as a subagent,
+- In normal use the top-level session is the PO. A lead running as a subagent,
   returns a plan plus ready-to-run Worker briefs (`templates/brief.md`), and the PO starts the
   Workers.
 - In direct mode the member you are talking to is the top-level session and starts its own Workers.
