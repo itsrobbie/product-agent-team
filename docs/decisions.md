@@ -17,3 +17,7 @@ DECIDED silently; supersede rows rather than deleting them.
 | D9 | Kiro adapter writes JSON agent files on Kiro CLI 2.x and Markdown on V3 (2.x does not load Markdown agent files). | DECIDED | 2026-11-02 |
 | D10 | Verification drives Codex and OpenCode through the CLIs bundled in their desktop apps, using the owner's existing sign-in; no separate CLI installs. | DECIDED | 2026-11-02 |
 | D11 | Design documents that are themselves the thinking (charters, ADRs, specs, kit docs) are written by the owning member; Workers do mechanical work only. | DECIDED | 2026-11-02 |
+| D12 | One-level spawning is a kit contract enforced by orchestration and instructions, not by a native nesting setting (none is documented for Codex custom agents). | DECIDED | 2026-11-02 |
+| D13 | When no supported tool is detected, the installer falls back to the generic AGENTS.md-only adapter. | DECIDED | 2026-11-02 |
+| D14 | Kiro 2.x agent files use `tools` and `toolsSettings`, never `allowedTools` alone (rejected by the 2.37 validator); V3 files use `permissions`. OpenCode files use `permission`, not the deprecated `tools`. | DECIDED | 2026-11-02 |
+| D15 | The installer's identity-hygiene check builds its pattern at install time from local identity values and never commits the pattern. | DECIDED | 2026-11-02 |
