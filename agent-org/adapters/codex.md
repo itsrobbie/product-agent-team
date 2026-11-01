@@ -51,14 +51,15 @@ The installer substitutes the chosen model ids and emits the same shape for ever
 
 ## Spawning and direct mode
 
-Codex starts subagents from the top-level conversation through its subagent workflow. The kit's contract permits one level only: the top-level session starts members or Workers, and a child never starts a child. The installer may set the documented `[agents]` concurrency limit in `.codex/config.toml` only when the repository already has a config and the owner approves that change. It must not invent a nesting field because Codex does not document one.
+Codex starts subagents from the top-level conversation through its subagent workflow. The kit's contract permits one level only: the top-level session starts members or Workers, and a child never starts a child. The installer may set the documented `[agents]` concurrency limit in `.codex/config.toml` only when the repository already has a config and the owner approves that change. The current key is `max_concurrent_threads_per_session`; `max_threads` is its legacy alias. Codex does not document a `max_depth` nesting field.
 
 There is no native member-switch shortcut that replaces the router. The phrases `I'm talking to the Architect`, `@architect`, and `switch to architect` are handled by `agent-org/ROUTER.md`. A Codex custom agent can be invoked by its name from the top-level workflow, but direct-mode context still comes from the router and member file.
 
 ## Known limits
 
-- Codex custom-agent TOML is documented for project files under `.codex/agents/`; exact discovery can depend on the installed CLI version.
+- Codex custom-agent TOML discovery under project-scoped `.codex/agents/` is documented. The filename normally matches the `name` field, but `name` is the source of truth.
 - Custom agents inherit the parent sandbox, approvals, provider, MCP servers, and skills. Their files cannot grant broader access.
+- `sandbox_mode` is a session/config setting. A custom-agent file cannot override the parent sandbox mode.
 - Codex documents disabling `features.shell_tool`, but it does not document an independent per-agent file-write switch. Thinking members therefore rely on the shell restriction plus the charter contract.
-- Codex does not document a native hard nesting limit in the custom-agent file. The one-level rule is enforced by instructions and review.
+- Codex does not document a native `max_depth` or other hard nesting limit for custom agents. The one-level rule is enforced by instructions and review.
 - Do not run a prompt during installation. Validate syntax and file placement locally, then let the repository's normal Codex session verify loading after the owner starts it.

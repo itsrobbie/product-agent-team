@@ -54,11 +54,12 @@ agent-org/lessons.md           # committed durable corrections
    `.agent-org-session/` folder. At the end of a session, or on leaving direct mode, the member
    writes a short summary: decisions to the register, open threads as a few lines under its heading
    in `state-of-play.md`.
-5. **One level of spawning on every tool.** Codex blocks grandchildren by default, so only the
-   top-level session starts agents. Normally that is the Product Owner: a lead returns a plan plus
-   ready-to-run Worker briefs, and the Product Owner starts those Workers. In direct mode the member
-   you are talking to is the top-level session and starts its own Workers. Without any subagent
-   feature, Workers run one after another with a context reset between them.
+5. **One level of spawning on every tool.** Only the top-level session starts agents. Normally
+   that is the Product Owner: a lead returns a plan plus ready-to-run Worker briefs, and the
+   Product Owner starts those Workers. In direct mode the member you are talking to is the top-level
+   session and starts its own Workers. The kit enforces the one-level rule through top-level
+   orchestration and child instructions. Without any subagent feature, Workers run one after
+   another with a context reset between them.
 6. **Reliability rules in every brief:** one deliverable, a time budget with a hard stop, commit
    after every green step, never end a turn with live children, resume from commits plus
    state-of-play.
