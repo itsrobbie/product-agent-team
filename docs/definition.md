@@ -60,8 +60,11 @@ agent-org/lessons.md           # committed durable corrections
 6. **Reliability rules in every brief:** one deliverable, a time budget with a hard stop, commit
    after every green step, never end a turn with live children, resume from commits plus
    state-of-play.
-7. **Tailored setup.** The agent following `SETUP.md` reads the repo and writes the full roster
-   with tailored charters. Where a role has nothing to own, it says so and you
+7. **Fits into existing repositories.** Most setups land in a repo with its own history, ADRs,
+   conventions and work in progress. The setup indexes existing decision records instead of
+   copying them, seeds state-of-play from what is in flight, lets the repo's conventions and agent
+   instructions win over kit defaults, and only adds files. The agent following `SETUP.md` writes
+   the full roster with tailored charters. Where a role has nothing to own, it says so and you
    decide whether to keep it.
 
 ## Default roster
@@ -89,12 +92,13 @@ A Security reviewer is an optional role pack, added once the product has real su
 - No persistent per-member memory in the repo.
 - **Docs only.** No scripts, no tool adapters, no generated tool files. The environment the kit is
   hydrated into wires it into its own tool (subagents, models, permissions), guided by the
-  principles in `SETUP.md` section 4.
+  principles in `SETUP.md` section 5.
 
 ## Done means
 
-- A fresh agent in a new repository can follow `SETUP.md` with no prior context and no hand edits,
-  and ends with tailored member charters, the shared files, the `AGENTS.md` block and a PR.
+- A fresh agent in an existing repository can follow `SETUP.md` with no prior context and no hand
+  edits, and ends with tailored member charters, a register that indexes the repo's existing
+  decisions, a seeded state-of-play, the `AGENTS.md` block and a PR that only adds files.
 - Every rule a member needs is in the kit's docs, with one term per concept and no contradictions
   between `OPERATING.md`, `ROUTER.md` and the charters.
 - Nothing in the kit is specific to one product, stack, tool or person.
