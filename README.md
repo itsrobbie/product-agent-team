@@ -4,12 +4,16 @@ A drop-in, markdown-only setup for running a software product with a team of AI 
 talk to **one** agent (the Product Owner) and it decides, delegates and shields you from everything
 that does not genuinely need a human.
 
-It is tool-neutral. It targets **Codex**, **Kiro** and **OpenCode**, and works with any tool that
-reads `AGENTS.md`. There is no runtime, no CLI and no service: just files you copy into a repo and
-an installer document your existing agent reads and follows.
+It is docs only and tool-neutral. There are no scripts, adapters or tool files: you point the agent
+in a repo at `agent-org/SETUP.md`, it sets the team up from these docs, and it wires the team into
+its own tool (subagents, models, permissions) however that tool allows.
 
-> **Status: definition approved, kit not yet built.** This repo currently holds the research and the
-> definition. The kit itself (`agent-org/`) lands next.
+## Use it
+
+Copy `agent-org/` somewhere the target repo's agent can read it, then tell that agent:
+"Follow `agent-org/SETUP.md` to set up the product agent team in this repo with the default
+roster." After the PR merges, talk to the Product Owner, or say "I'm talking to the QA Lead" to
+work with one member directly.
 
 ## Why
 
@@ -29,6 +33,8 @@ could answer. This setup fixes that with:
 
 ## Read
 
+- [`agent-org/`](agent-org/): the kit itself (`SETUP.md`, `OPERATING.md`, `ROUTER.md`, `roles/`,
+  `templates/`).
 - [`docs/research.md`](docs/research.md): how leading teams (Anthropic, Cognition, OpenAI, Google,
   the AGENTS.md tools, BMAD) build multi-agent systems, and how this setup compares.
 - [`docs/definition.md`](docs/definition.md): what the kit is, what it is not, and what done means.

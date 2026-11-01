@@ -1,129 +1,104 @@
-# Agent organization installer
+# Setup
 
-This file is the installer for the public, docs-only kit. A fresh agent can follow it in any target repository. The kit is tool-neutral until the tool-detection step.
+Point the agent in a target repository at this file. It tells that agent what to set up. How the
+team is wired into the agent's own tool (subagents, models, permissions, agent pickers) is left to
+that environment: use whatever features it has, guided by the principles at the end.
 
-## Rules before writing
+## Rules
 
 - Work from the target repository root.
-- Read this file, `agent-org/OPERATING.md`, `agent-org/ROUTER.md`, the decision register, the templates, and the role charters before proposing anything.
-- Do not write files before the owner approves the roster. Roster approval is the only owner question in this installer.
-- Use the target repository's existing conventions. Do not replace existing instructions, decisions, state, lessons, or member charters.
-- Keep CI to lint, build, and test. CI must not deploy or converge infrastructure.
-- Never put names, handles, machine names, hosts, IPs, network identifiers, credentials, or absolute local paths in committed files.
+- Read this file, `OPERATING.md`, `ROUTER.md`, the role charters in `roles/` and the templates in
+  `templates/` before proposing anything.
+- The target repository's existing instructions outrank this kit. Never overwrite them.
+- Write nothing until the owner approves the roster. That is the only question to ask.
+- Never commit names, handles, machine names, hostnames, network identifiers, credentials or
+  absolute local paths.
 
-## 1. Read the target repository
+## 1. Read the repository
 
-Inspect the repository before making a proposal. Record evidence in the installer's working notes, not in committed files yet.
+Read the README, `docs/`, build and test configuration, CI workflows and any existing `AGENTS.md`.
+Note what each role would own here: the languages, build and test commands, CI files, where design
+records live, where product docs live. If a role has nothing to own, note that.
 
-1. Identify the repository root and read its `README`, `docs/`, package manifests, lockfiles, build files, test configuration, and CI workflows. Identify languages, runtimes, package managers, build commands, lint commands, test commands, service-composition files, container files, and release notes.
-2. Read every existing `AGENTS.md` and `AGENTS.override.md` that applies at the repository root. Existing instructions outrank this kit. Do not overwrite them.
-3. Detect the agent tool in use:
-   - Codex: look for `.codex/` and Codex configuration or instructions.
-   - Kiro: look for `.kiro/` and Kiro agent configuration.
-   - OpenCode: look for `.opencode/`, `opencode.json`, or `opencode.jsonc`.
-   - If more than one signal exists, treat all matching tools as in use and generate every matching adapter.
-   - If none is detectable, use the generic `AGENTS.md` path. Do not ask the owner another tool question.
-4. Note the files and commands that each selected role will own. If a role has no relevant surface, record that explicitly as “Nothing to own in this repository at install time.”
+## 2. Propose the roster
 
-## 2. Propose the roster and wait
+Show the owner the default roster, one line per role saying what it will own in this repository,
+and flag any role with nothing to own:
 
-Show the owner the default roster, with one line per role describing what that role will own in this repository. Tailor each line to the evidence from step 1. Flag roles with nothing to own. Use this default roster unless the owner removes a role:
+- **Product Owner** (`product-owner`): product definition, open product forks, the front door.
+- **Architect** (`architect`): boundaries, interfaces, architecture records.
+- **Engineering Manager** (`engineering-manager`): sequencing, work breakdown, capacity.
+- **DevOps Lead** (`devops-lead`): environments, CI, release automation.
+- **Software Lead** (`software-lead`): implementation patterns and code conventions.
+- **QA Lead** (`qa-lead`): acceptance criteria, test strategy, independent verification.
+- **UX / Design Lead** (`ux-design-lead`): interaction, accessibility, user-facing wording, assets.
+- **Conductor** (`conductor`): Worker briefs, routing, checking Workers' evidence.
+- **Worker** (`worker`): one bounded hands-on change at a time.
 
-- **Product Owner** (`product-owner`): owns the product definition, open product forks, and the front door for this repository.
-- **Architect** (`architect`): owns the boundaries, interfaces, and architecture records for this repository.
-- **Engineering Manager** (`engineering-manager`): owns sequencing, work breakdown, and capacity for this repository.
-- **DevOps Lead** (`devops-lead`): owns the development environment, compose parity, CI lint/build/test lanes, and release preparation for this repository.
-- **Software Lead** (`software-lead`): owns implementation patterns and code-level conventions for this repository.
-- **QA Lead** (`qa-lead`): owns acceptance criteria, test strategy, and independent verification for this repository.
-- **UX / Design Lead** (`ux-design-lead`): owns interaction, accessibility, user-facing vocabulary, and assets for this repository.
-- **Conductor** (`conductor`): owns Worker briefs, routing, evidence checks, and handoffs for this repository.
-- **Worker** (`worker`): owns one bounded mechanical change at a time in this repository.
+Wait for approval or removals. If the message that asked for the setup already approves a roster
+(for example "set up the team with the default roster"), treat that as the approval and do not ask
+again.
 
-Wait for the owner's approval or requested removals. Do not create `agent-org/`, modify `AGENTS.md`, modify `.gitignore`, or generate native files until the owner responds. This is the only owner question. If the owner requests a roster change, apply it without reopening the tool or architecture decisions already recorded in the kit.
+## 3. Copy and tailor
 
-## 3. Copy the kit and tailor the members
-
-After approval, let `KIT_ROOT` be the directory containing the `SETUP.md` that the agent is following. Let `TARGET_ROOT` be the repository root.
-
-1. Create `TARGET_ROOT/agent-org/` and copy the public kit documents from `KIT_ROOT`: `SETUP.md`, `OPERATING.md`, `ROUTER.md`, `adapters/`, `roles/`, and `templates/`. These files explain the installed contract and remain committed.
-2. Create `TARGET_ROOT/agent-org/members/`.
-3. For each approved role, copy its matching `KIT_ROOT/agent-org/roles/<id>.md` to `TARGET_ROOT/agent-org/members/<id>.md`.
-4. Fill every `<!-- INSTALLER: ... -->` placeholder in each new member charter from the evidence collected in step 1. Name actual repository-relative documents, commands, source boundaries, CI files, and validation paths. Keep placeholders out of the installed member files. If the role has no surface, write that fact in its `This repo` section instead of inventing ownership. Keep the role's “Use me when” quote and ownership boundaries unchanged.
-5. Initialize these files only when they do not already exist:
-   - `agent-org/decision-register.md` from `templates/decision-register.md`.
-   - `agent-org/needs-human.md` from `templates/needs-human.md`.
-   - `agent-org/state-of-play.md` from `templates/state-of-play.md`.
-   - `agent-org/lessons.md` from `templates/lessons.md`.
-6. Do not replace an existing decision register, needs-human queue, state-of-play file, lessons file, or filled member charter. Preserve every status tag and every existing row. The installer may add a dated install note only when the repository's own workflow requires one; it must not promote an OPEN or SUGGESTED row.
-
-## 4. Add the session ignore entry
-
-Append `.agent-org-session/` to the repository's existing `.gitignore` if that exact entry is absent. Create `.gitignore` only if it does not exist. Preserve all existing patterns and comments. Do not ignore committed `agent-org/` files.
-
-## 5. Add the router block to AGENTS.md
-
-If `AGENTS.md` is missing, create it with the repository's normal heading followed by the block below. If it exists, append the block without changing existing content. Add the block once only.
+1. Copy this kit into the target as `agent-org/`: `SETUP.md`, `OPERATING.md`, `ROUTER.md`,
+   `roles/` and `templates/`.
+2. For each approved role, copy `roles/<id>.md` to `agent-org/members/<id>.md` and fill its
+   `This repo` section from what step 1 found. Use real repo-relative paths and commands. If the
+   role has nothing to own, say so rather than inventing ownership.
+3. Create these from `templates/`, only if they do not already exist:
+   `agent-org/decision-register.md`, `agent-org/needs-human.md`, `agent-org/state-of-play.md`,
+   `agent-org/lessons.md`.
+4. Add `.agent-org-session/` to `.gitignore`.
+5. Add this block to `AGENTS.md` (create the file if missing; append, never replace):
 
 ```markdown
 <!-- agent-org:begin -->
 ## Agent organization
-Before any work, read `agent-org/ROUTER.md`. It selects the Product Owner or the direct member named by the user. Then follow `agent-org/OPERATING.md` and the selected `agent-org/members/<id>.md` charter. Use `agent-org/state-of-play.md`, `agent-org/needs-human.md`, and the relevant rows in `agent-org/decision-register.md` as shared state.
+Before any work, read `agent-org/ROUTER.md`. It selects the Product Owner or the member the user
+names. Then follow `agent-org/OPERATING.md` and that member's `agent-org/members/<id>.md`.
 <!-- agent-org:end -->
 ```
 
-The block is intentionally short. It points at the source files instead of copying their contents. If an existing `AGENTS.md` tells the tool to read another instruction file first, preserve that order and place this block where the repository's instructions allow it.
+If the environment's tool reads a different instruction file instead of `AGENTS.md`, put the same
+block there too.
 
-## 6. Generate native agent files
+## 4. Wire it into your environment
 
-Generate native files only for tools detected in step 1. Use the matching adapter in `agent-org/adapters/` as the format authority. Generate one file per approved member, including the Worker. Use the exact first quote line in each role charter as the native `description`.
+This kit ships no tool files. Use your own tool's features to honour these principles, in whatever
+way it supports. If it supports none of them, the docs alone still work: the router and the rules
+run the team inside one chat.
 
-Before writing model fields, inspect the selected tool's locally offered models without signing in, starting a prompt, or writing to a global configuration directory. Fill `__TOP_MODEL__` for every thinking member and `__CHEAP_MODEL__` for the Worker. If a model cannot be confirmed from the tool's offer, stop native generation and report the missing evidence instead of guessing.
+- **One member per agent definition.** If the tool lets you define named agents or subagents, define
+  one per member. Each definition should point at `agent-org/OPERATING.md` and
+  `agent-org/members/<id>.md` rather than copying them, and use the first quoted line of the charter
+  as its "when to use me" description.
+- **Think on the top model, do on a cheap model** (`OPERATING.md` section 5). If the tool lets you
+  pick a model per agent, put thinking members on the strongest model and the Worker on a cheap one.
+  If it lets you limit tools per agent, keep thinking members off file editing and shell.
+- **Only the top-level session starts agents** (`OPERATING.md` section 6). Do not rely on subagents
+  starting their own subagents.
+- **Direct mode** (`ROUTER.md`). If the tool has its own agent picker, it should load the same
+  member files the router does.
 
-- **Codex:** write `.codex/agents/<id>.toml` using `adapters/codex.md`. Keep thinking agents away from shell tools where the documented feature allows it. Do not write to `~/.codex`.
-- **Kiro CLI 2.x:** write `.kiro/agents/<id>.json` using the legacy documented fields in `adapters/kiro.md`. Validate each file with the installed Kiro CLI. Do not write to `~/.kiro`.
-- **Kiro CLI V3:** write `.kiro/agents/<id>.md` using the current frontmatter format in `adapters/kiro.md`. Use `permissions` rather than `toolsSettings` or `allowedTools`.
-- **OpenCode:** write `.opencode/agents/<id>.md` using `adapters/opencode.md`. If an existing config defines the same agent name, stop and report the collision. Do not overwrite an existing agent without an explicit owner instruction.
-- **Generic:** write no native file. The `AGENTS.md` block and `ROUTER.md` provide the portable path.
+Keep any tool files you create out of `agent-org/`. They belong to the environment, not the kit.
 
-Native files must point at `agent-org/OPERATING.md` and `agent-org/members/<id>.md`. Do not paste charters into native files. Keep the top-level session responsible for spawning. Enforce one nesting level: the top-level session may start a member or Worker, and no child may start another child.
+## 5. Check and hand over
 
-## 7. Self-check and report
+Before committing, confirm:
 
-Run the following checks and report each result with the paths and counts. A failed check blocks the install commit.
+- every approved member has a filled `agent-org/members/<id>.md` with no placeholder left;
+- the register, needs-human, state-of-play and lessons files exist, and existing ones were not
+  replaced;
+- the `AGENTS.md` block appears exactly once;
+- `.agent-org-session/` is ignored;
+- no names, handles, hostnames, local paths or credentials appear in the changed files.
 
-1. **Kit files:** `agent-org/SETUP.md`, `OPERATING.md`, `ROUTER.md`, `adapters/`, `roles/`, `templates/`, and the approved `members/` files exist.
-2. **Persistent files:** `agent-org/decision-register.md`, `needs-human.md`, `state-of-play.md`, and `lessons.md` exist. Existing files were not replaced.
-3. **Member tailoring:** no `<!-- INSTALLER:` placeholder remains in an installed member charter, and every approved member has a `This repo` section.
-4. **AGENTS block:** the `agent-org:begin` and `agent-org:end` markers occur exactly once and the block points to `agent-org/ROUTER.md`.
-5. **Gitignore:** `.agent-org-session/` occurs as an entry in `.gitignore`, and `git status --short` does not show a session directory.
-6. **Native coverage:** for every detected native tool, every approved member has exactly one native file in the correct directory and the file points to the member charter and operating contract.
-7. **Native format:** parse each TOML, JSON, or YAML frontmatter file with a read-only local validator or the tool's documented validation command. Check descriptions, model pins, permissions, and Worker routing. Do not start an agent prompt.
-8. **Hygiene:** build a grep pattern at install time from values that identify the owner and
-   machine (the git `user.name` and `user.email`, the hosting-account handle, the hostname, the
-   home directory path) and run it against every file this install adds or changes. It must print
-   nothing. Never write the pattern itself into a committed file, since it contains those values.
-   Also reject credentials and IP addresses in the changed files.
-9. **Diff scope:** inspect `git diff --check` and `git diff --stat`. Only installer, kit, router, ignore, and approved native files may be changed.
+Then commit on a branch, push it, and open a pull request (`OPERATING.md` section 9). The owner
+merges it.
 
-## 8. Commit and open a PR in the target repository
+## Updating
 
-Install on a branch, never on `main`.
-
-1. Create a branch such as `agent-org/install` or `agent-org/upgrade` from the target repository's current base. Never push `main`.
-2. Run the self-check again after staging and before committing.
-3. Commit the green result with the repository's configured identity. The commit message should say what was installed, for example `Install agent organization kit`.
-4. Push only the install or upgrade branch and open a pull request in the target repository. The PR should explain the detected tools, selected roster, generated native files, self-check results, and any known limits. The PR must not include deployment or infrastructure-convergence behavior.
-5. The owner merges the PR. Do not push to `main`. Treat the install as complete only after the repository's lint, build, and test CI checks are green.
-
-## 9. Re-run and upgrade
-
-Run this installer again when a newer kit copy is available or the repository adds a supported tool.
-
-1. Repeat the read and detection steps. Re-propose the roster only if the owner has not already approved it for this installation or the repository's owned surfaces changed materially.
-2. Update the public kit files from the newer `KIT_ROOT`: `SETUP.md`, `OPERATING.md`, `ROUTER.md`, `adapters/`, `roles/`, and `templates/`.
-3. Never overwrite the target's `agent-org/decision-register.md`, `state-of-play.md`, `needs-human.md`, or `lessons.md`.
-4. Never overwrite an installed `agent-org/members/<id>.md` that has filled `This repo` content. Preserve local charter edits. If a new role was approved, create only that missing member file from the role template and fill its placeholders.
-5. Regenerate native files from the preserved member charters. Add files for newly detected tools or members. Remove no native file automatically; report stale files for review.
-6. Re-run every self-check, including the hygiene grep, and commit the upgrade on a branch. Open a PR rather than pushing to `main`.
-
-An upgrade changes the kit and regenerates adapters. It does not erase the repository's decisions, state, open human questions, lessons, or filled member charters.
+To update an existing install from a newer copy of this kit, replace `SETUP.md`, `OPERATING.md`,
+`ROUTER.md`, `roles/` and `templates/`. Never overwrite the repository's register, state-of-play,
+needs-human, lessons or filled member charters. Add a member file only for a newly approved role.
