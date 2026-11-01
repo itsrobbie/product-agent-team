@@ -1,6 +1,6 @@
 # OpenCode adapter
 
-Use this adapter when the target repository uses OpenCode. The official reference is [OpenCode agents](https://opencode.ai/docs/agents/).
+Use this adapter when the target repository uses OpenCode. The official references are [OpenCode agents](https://opencode.ai/docs/agents/), [OpenCode configuration](https://opencode.ai/docs/config/), and [OpenCode permissions](https://opencode.ai/docs/permissions/).
 
 ## Native files and generation
 
@@ -10,7 +10,7 @@ The installer asks OpenCode which models it offers, using the local installation
 
 ## File format
 
-OpenCode Markdown agents use YAML frontmatter. The documented fields used by this adapter are `description`, `mode`, `model`, `prompt`, `permission`, and `hidden`. `mode: subagent` is used for members invoked by the top-level session. The Product Owner may be emitted as `mode: primary` when the installer is configuring the main front door; all other members are subagents. If a repository already has a primary agent policy, preserve it and add the kit members as subagents.
+OpenCode Markdown agents use YAML frontmatter. The documented fields used by this adapter are `description`, `mode`, `model`, `prompt`, `permission`, and `hidden`. `mode: subagent` is used for members invoked by the top-level session. The legacy `tools` field remains supported but is deprecated; use `permission` for new agents. The Product Owner may be emitted as `mode: primary` when the installer is configuring the main front door; all other members are subagents. If a repository already has a primary agent policy, preserve it and add the kit members as subagents.
 
 ### Complete thinking-member example
 

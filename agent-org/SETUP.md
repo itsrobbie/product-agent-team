@@ -22,7 +22,7 @@ Inspect the repository before making a proposal. Record evidence in the installe
    - Kiro: look for `.kiro/` and Kiro agent configuration.
    - OpenCode: look for `.opencode/`, `opencode.json`, or `opencode.jsonc`.
    - If more than one signal exists, treat all matching tools as in use and generate every matching adapter.
-   - If none is detectable, ask the owner which tool they use or whether to use the generic `AGENTS.md` path. Do not ask any other owner question.
+   - If none is detectable, use the generic `AGENTS.md` path. Do not ask the owner another tool question.
 4. Note the files and commands that each selected role will own. If a role has no relevant surface, record that explicitly as “Nothing to own in this repository at install time.”
 
 ## 2. Propose the roster and wait
@@ -98,17 +98,17 @@ Run the following checks and report each result with the paths and counts. A fai
 5. **Gitignore:** `.agent-org-session/` occurs as an entry in `.gitignore`, and `git status --short` does not show a session directory.
 6. **Native coverage:** for every detected native tool, every approved member has exactly one native file in the correct directory and the file points to the member charter and operating contract.
 7. **Native format:** parse each TOML, JSON, or YAML frontmatter file with a read-only local validator or the tool's documented validation command. Check descriptions, model pins, permissions, and Worker routing. Do not start an agent prompt.
-8. **Hygiene:** run the repository's required identity-hygiene grep from the project instructions against `agent-org`, `docs`, `README.md`, and every changed file. It must print nothing. Also reject absolute local paths, credentials, hosts, IPs, handles, and machine identifiers in the changed files.
+8. **Hygiene:** run the identity-hygiene grep required by the project instructions from the repository root against `agent-org`, `docs`, and `README.md`. It must print nothing. Keep the grep pattern out of committed files. Also reject absolute local paths, credentials, hosts, IPs, handles, and machine identifiers in the changed files.
 9. **Diff scope:** inspect `git diff --check` and `git diff --stat`. Only installer, kit, router, ignore, and approved native files may be changed.
 
 ## 8. Commit and open a PR in the target repository
 
 Install on a branch, never on `main`.
 
-1. Create a branch such as `agent-org/install` or `agent-org/upgrade` from the target repository's current base.
+1. Create a branch such as `agent-org/install` or `agent-org/upgrade` from the target repository's current base. Never push `main`.
 2. Run the self-check again after staging and before committing.
 3. Commit the green result with the repository's configured identity. The commit message should say what was installed, for example `Install agent organization kit`.
-4. Push the branch and open a pull request in the target repository. The PR should explain the detected tools, selected roster, generated native files, self-check results, and any known limits. The PR must not include deployment or infrastructure-convergence behavior.
+4. Push only the install or upgrade branch and open a pull request in the target repository. The PR should explain the detected tools, selected roster, generated native files, self-check results, and any known limits. The PR must not include deployment or infrastructure-convergence behavior.
 5. The owner merges the PR. Do not push to `main`. Treat the install as complete only after the repository's lint, build, and test CI checks are green.
 
 ## 9. Re-run and upgrade
