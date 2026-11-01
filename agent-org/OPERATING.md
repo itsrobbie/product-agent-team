@@ -72,9 +72,9 @@ again before anything reaches the owner.
 
 ## 6. Spawning
 
-- **Only the top-level session starts agents.** Some tools (Codex by default) do not let a subagent
-  start its own subagents, so the kit never relies on it. A subagent returns its plan, briefs or
-  result to its parent and never dispatches another member, even if the tool exposes that feature.
+- **Only the top-level session starts agents.** The kit never relies on a child spawning another
+  child. A subagent returns its plan, briefs or result to its parent and never dispatches another
+  member, even if the tool exposes that feature.
 - In normal use the top-level session is the PO. A lead or the Conductor, running as a subagent,
   returns a plan plus ready-to-run Worker briefs (`templates/brief.md`), and the PO starts the
   Workers.

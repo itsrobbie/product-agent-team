@@ -53,11 +53,8 @@ line what changed while the owner was in direct mode (new register rows, new ope
 
 ## Native shortcuts (optional)
 
-Some tools have their own way to pick an agent. They load the same member files:
-
-- **OpenCode:** Tab between primary agents, or @mention a member.
-- **Kiro:** swap to the member's agent.
-- **Codex:** no equivalent; use the phrases above.
+If the tool has its own way to pick an agent (an agent picker, an @mention), it should load the
+same member files as the phrases above. The phrases always work.
 
 ## When this chat was started as a subagent
 
