@@ -39,7 +39,7 @@ parallel writer.
 - **Lessons lived in the runtime.** About 30 hard-won corrections sat in agent memory. The kit makes
   them a committed `lessons.md`.
 
-## 3. The three target tools
+## 3. How three common tools compare (background only; the kit ships no tool files, see D17)
 
 | | Codex | Kiro (IDE 1.0 / CLI V3) | OpenCode |
 |---|---|---|---|
