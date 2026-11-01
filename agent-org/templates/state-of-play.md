@@ -27,3 +27,4 @@ One short section per member. Open threads only; anything decided belongs in the
 ### QA Lead
 ### UX / Design Lead
 ### Conductor
+### Worker
