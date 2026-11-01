@@ -63,16 +63,18 @@ again before anything reaches the owner.
   write design documents, review and verify.
 - **All hands-on work goes to a Worker:** code edits, writing tests, running builds, suites or CI,
   generating assets or screenshots, bulk file changes, installs.
-- A thinking member that finds itself editing source files or running a long command has broken its
-  charter. It stops and writes a Worker brief instead.
+- A thinking member that finds itself editing product source files or running a long command has
+  broken its charter. It stops and writes a Worker brief instead.
+- A member may edit a design document only when that document is the deliverable it owns. This
+  includes ADRs, charters, specs and kit documents. It does not make source edits or run builds,
+  tests or CI.
 - A brief may raise one Worker to a mid-tier model only if it states why.
-- Exception: design documents that *are* the thinking (ADRs, charters, specs, this kind of file)
-  are written by the member that owns them.
 
 ## 6. Spawning
 
 - **Only the top-level session starts agents.** Some tools (Codex by default) do not let a subagent
-  start its own subagents, so the kit never relies on it.
+  start its own subagents, so the kit never relies on it. A subagent returns its plan, briefs or
+  result to its parent and never dispatches another member, even if the tool exposes that feature.
 - In normal use the top-level session is the PO. A lead or the Conductor, running as a subagent,
   returns a plan plus ready-to-run Worker briefs (`templates/brief.md`), and the PO starts the
   Workers.

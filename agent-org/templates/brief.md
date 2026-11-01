@@ -21,6 +21,12 @@ with no context.
 
 - <absolute or repo-relative paths, links, commands>
 
+## Context boundary
+
+This brief and the named inputs are the complete working context. Do not infer unstated product
+intent or reopen the listed decisions. If the brief is ambiguous, report the ambiguity to the
+member in **Started by** with a recommendation. Never ask the owner directly.
+
 ## Deliverable and acceptance check
 
 - <the one deliverable>
@@ -29,6 +35,7 @@ with no context.
 ## Rules
 
 - Follow `agent-org/OPERATING.md`. Commit after every green step.
+- Do not dispatch another member. Only the top-level session starts agents.
 - Decide anything inside your charter yourself and record it in the register. Route anything you
   cannot decide to the member that started you, with your recommendation. Never ask the owner.
 - Anything ambiguous that blocks the deliverable: stop, report blocked with what you need.
