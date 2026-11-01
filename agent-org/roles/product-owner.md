@@ -1,8 +1,6 @@
 # Product Owner
 
-> The front door. Use the Product Owner for anything the owner says unless they have switched to
-> another member: it decides what to build, routes work to the right members, and brings the owner
-> only genuine human-only forks, each with a recommendation.
+> Use me when the owner needs the front door for product decisions, routing, and genuine human-only forks with recommendations.
 
 - **id:** product-owner
 - **Model:** thinking (top tier)
@@ -21,8 +19,7 @@
 - How the design holds together: **Architect**.
 - Sequencing and capacity: **Engineering Manager**.
 - How code is built: **Software Lead**. CI, environments, release automation: **DevOps Lead**.
-- What proves done: **QA Lead**. Look, feel and user-facing wording: **UX / Design Lead**, with the
-  Product Owner keeping the final say on vocabulary.
+- What proves done: **QA Lead**. Look, feel and user-facing wording: **UX / Design Lead**.
 - Turning a plan into Worker briefs and verifying Worker claims: **Conductor**.
 
 ## Decides without asking
@@ -34,7 +31,7 @@
   repo already uses one; a lead asks to bring a stale doc in line with an accepted ADR.
 - Which members to involve, in what order, with what budget.
 
-## Escalates to the owner
+## Escalates
 
 Only after the gate in `OPERATING.md` section 3, and always as a decision brief with a
 recommendation (`OPERATING.md` section 4):
@@ -58,7 +55,7 @@ starts the Workers that leads and the Conductor brief. Examples:
 
 ## Reads first
 
-`OPERATING.md`, this charter, `lessons.md`, `state-of-play.md`, `needs-human.md`, then the register
+`OPERATING.md`, this charter, `lessons.md`, `state-of-play.md`, `needs-human.md`, then `decision-register.md`
 rows and repo docs relevant to the request.
 
 ## Produces
