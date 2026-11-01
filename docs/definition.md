@@ -4,8 +4,7 @@
 
 ## One sentence
 
-A folder of markdown files you drop into any repo. You point that repo's agent (Codex, Kiro or
-OpenCode) at `SETUP.md`, it installs a tiered product agent team tailored to the repo, and from
+A folder of markdown files you drop into any repo. You point that repo's agent at `SETUP.md`, it installs a tiered product agent team tailored to the repo, and from
 then on you talk to the Product Owner, who decides, delegates and buffers. Or you say "I'm talking
 to the X" to work directly with one member.
 
@@ -18,8 +17,6 @@ agent-org/                     # the drop-in folder
   ROUTER.md                    # who am I talking to: Product Owner vs "I'm talking to the X"
   roles/                       # one charter template per roster role
   templates/                   # decision-register, needs-human, state-of-play, lessons, brief
-  adapters/                    # how to map onto each tool's native agent feature
-    codex.md  kiro.md  opencode.md  generic.md
 ```
 
 After install, the target repo has:
@@ -32,7 +29,7 @@ agent-org/needs-human.md       # committed
 agent-org/state-of-play.md     # committed handoff file; every session starts by reading it
 agent-org/lessons.md           # committed durable corrections
 .agent-org-session/            # GITIGNORED: per-member scratch notes for the current session
-+ native agent files generated for whichever of the three tools are in use
+(any tool-specific agent files are the environment's own, not the kit's)
 ```
 
 ## What it does
@@ -44,8 +41,8 @@ agent-org/lessons.md           # committed durable corrections
 2. **Direct mode.** "I'm talking to the Architect", "@architect" or "switch to QA" makes the chat
    load that member's charter, the register and state-of-play, and answer as that member until
    "back to the Product Owner". The member owns HOW, not WHETHER, and its decisions still go in the
-   register. Works through the `AGENTS.md` router in all three tools; OpenCode's Tab/@ switching and
-   Kiro's agent swap are optional shortcuts.
+   register. Works through the `AGENTS.md` router in any tool; a tool's own agent picker is an optional
+   shortcut to the same files.
 3. **Think on the top model, do on a cheap model.** Every member except Worker uses the top model
    only to read, plan, decide, brief, review and verify. Hands-on work (code edits, tests, builds,
    CI runs, assets, screenshots, bulk file changes) goes to a Worker on a cheap model. A brief may
@@ -54,15 +51,19 @@ agent-org/lessons.md           # committed durable corrections
    `.agent-org-session/` folder. At the end of a session, or on leaving direct mode, the member
    writes a short summary: decisions to the register, open threads as a few lines under its heading
    in `state-of-play.md`.
-5. **One level of spawning on every tool.** Codex blocks grandchildren by default, so only the
-   top-level session starts agents. Normally that is the Product Owner: a lead returns a plan plus
-   ready-to-run Worker briefs, and the Product Owner starts those Workers. In direct mode the member
-   you are talking to is the top-level session and starts its own Workers. Without any subagent
-   feature, Workers run one after another with a context reset between them.
+5. **One level of spawning on every tool.** Only the top-level session starts agents. Normally
+   that is the Product Owner: a lead returns a plan plus ready-to-run Worker briefs, and the
+   Product Owner starts those Workers. In direct mode the member you are talking to is the top-level
+   session and starts its own Workers. The kit enforces the one-level rule through top-level
+   orchestration and child instructions. Without any subagent feature, Workers run one after
+   another with a context reset between them.
 6. **Reliability rules in every brief:** one deliverable, a time budget with a hard stop, commit
    after every green step, never end a turn with live children, resume from commits plus
    state-of-play.
-7. **Tailored install.** The installer reads the repo, detects which tools are present, and writes
+7. **Fits into existing repositories.** Most setups land in a repo with its own history, ADRs,
+   conventions and work in progress. The setup indexes existing decision records instead of
+   copying them, seeds state-of-play from what is in flight, lets the repo's conventions and agent
+   instructions win over kit defaults, and only adds files. The agent following `SETUP.md` writes
    the full roster with tailored charters. Where a role has nothing to own, it says so and you
    decide whether to keep it.
 
@@ -89,15 +90,15 @@ A Security reviewer is an optional role pack, added once the product has real su
 - Not tied to any one tool or runtime.
 - Not a parallel-writer swarm. One integrator owns merges.
 - No persistent per-member memory in the repo.
-- No dedicated Claude Code, Copilot or Cursor adapters in v1. `generic.md` covers any tool that
-  reads `AGENTS.md`.
+- **Docs only.** No scripts, no tool adapters, no generated tool files. The environment the kit is
+  hydrated into wires it into its own tool (subagents, models, permissions), guided by the
+  principles in `SETUP.md` section 5.
 
 ## Done means
 
-- A fresh agent installs it from `SETUP.md`, with no hand edits, on each of Codex, Kiro and
-  OpenCode (two unrelated repos between them, at least one with two tools side by side).
-- On each tool: the Product Owner delegates a real task to at least two members and returns one
-  consolidated summary; "I'm talking to QA" switches context and back; a decision made in direct
-  mode lands in the register and is not re-asked; `.agent-org-session/` never shows in
-  `git status`; every file edit and build or test run was done by a cheap Worker.
-- A same-task comparison against a single agent (time, tokens, defects found) is recorded here.
+- A fresh agent in an existing repository can follow `SETUP.md` with no prior context and no hand
+  edits, and ends with tailored member charters, a register that indexes the repo's existing
+  decisions, a seeded state-of-play, the `AGENTS.md` block and a PR that only adds files.
+- Every rule a member needs is in the kit's docs, with one term per concept and no contradictions
+  between `OPERATING.md`, `ROUTER.md` and the charters.
+- Nothing in the kit is specific to one product, stack, tool or person.
